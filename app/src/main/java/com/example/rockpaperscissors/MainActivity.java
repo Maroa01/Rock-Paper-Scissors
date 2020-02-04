@@ -45,11 +45,60 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
+        Weapon.determineWinner();
+
         return super.onOptionsItemSelected(item);
     }
+
+
+    public enum Weapon {
+
+        ROCK("Rock"),
+        PAPER("Paper"),
+        SCISSORS("Scissors");
+        private String message;
+
+        private Weapon(String msg) {
+            message = msg;
+        }
+
+        public static void determineWinner() {
+        }
+
+        @Override
+        public String toString() {
+            return message;
+        }
+
+    }
+
+    ;
+
+    public static Weapon determineWinner(Weapon p1, Weapon p2) {
+        boolean p1_winner = false;
+        boolean p2_winner = false;
+
+        switch (p1) {
+            case ROCK:
+                if (p2 == Weapon.SCISSORS)
+                    p1_winner = true;
+                break;
+            case PAPER:
+                if (p2 == Weapon.ROCK)
+                    p1_winner = true;
+                break;
+            case SCISSORS:
+                if (p2 == Weapon.PAPER)
+                    p1_winner = true;
+                break;
+
+        }
+    }
 }
+    
